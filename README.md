@@ -3,6 +3,7 @@ The basic C data structures:
 - Lists
 - Trees
 - Heaps
+
 Basic data types supported:
 - (unsigned) char
 - (unsigned) short
