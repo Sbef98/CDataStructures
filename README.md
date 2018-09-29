@@ -10,4 +10,5 @@ Basic data types supported:
 - float
 - double
 - string
+
 Any different data type can be easily implemented adding your personal code to the library
