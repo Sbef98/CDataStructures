@@ -13,3 +13,5 @@ Basic data types supported:
 - string
 
 Any different data type can be easily implemented adding your personal code to the library
+Slightly different library based upon my "elements" can be found at (italian):
+https://github.com/LeoMirots/Lists
