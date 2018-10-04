@@ -33,6 +33,7 @@ extern list CONS(void* toel, int type, list l);
 extern list append (list l1, list l2);  //ok
 extern list append_element(element e, list l);//ok
 extern list APPEND_ELEMENT(void* toel, int type, list l);
+extern list behead(list l);
 extern void pop(list l, size_t element_n);  //ok
 extern void showlist(list l); //ok
 extern void printEl(element e);//da definire esternamente

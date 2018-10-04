@@ -50,6 +50,17 @@ list append_element(element e, list l)
 	return append(l, tmp);
 }
 
+list behead(list l)
+{
+	if(l == NULL)
+		return NULL;
+	list tmp;
+	tmp = l;
+	l = tail(l);
+	item_del(tmp);
+	return l;
+}
+
 void pop(list l, size_t element_n)
 {
 	//non serve lo 0, poichè è un semplice tail + cancellazione!!!
@@ -91,7 +102,7 @@ element getElement(list l, size_t element_n)
 {
 	for(size_t i = 0; i < element_n; i++){
 		if(l->next == NULL){
-      fprintf(stderr, "%s\n","Cercato di leggere oltre il limite della lista!" );
+      fprintf(stderr, "%s\n","The list ended already!" );
 			abort();
     }
 		l = l->next;
@@ -255,9 +266,16 @@ void bubble_sort(list l)
 void swap(list a, list b) // va miglioratore
 {
 	element tmp;
+	/*
 	memcpy(&tmp, &(a->value), sizeof(element));
 	memcpy(&(a->value), &(b->value), sizeof(element));
-	memcpy(&(b->value), &tmp, sizeof(element));
+	memcpy(&(b->value), &tmp, sizeof(element));*/
+	tmp.value = a->value.value;
+	tmp.type = a->value.type;
+	a->value.value = b->value.value;
+	a->value.type = b->value.type;
+	b->value.value = tmp.value;
+	b->value.type = tmp.type;
 }
 
 list CONS(void* toel, int tipo, list l)

@@ -22,38 +22,38 @@ void scambia(int *n1, int *n2)
 	*n2 = temp;
 }
 
-void heapify(int *A, int i, int heap_size) //Move down di un nodo
+void heapify(int *A, int i, int heap_size) //Node move down 
 {
 
 	int l, r, largest;
-	l = left(i); //Indice del figlio sx di i
-	r = right(i);//Indice del figlio dx di i
+	l = left(i); //I's left son index'
+	r = right(i);//I's right son index'
 
-	largest = i; //Setto come valore di default i (posizione)
+	largest = i; //Setting position I as default value
 
-	if ((l <= heap_size) && (A[l] > A[i])) //Se i ha figlio sx e se figlio sx > padre i
-		largest = l; //Setto largest ad l
+	if ((l <= heap_size) && (A[l] > A[i])) //If i has left son and the right one is > father i
+		largest = l; //Setting largest at l
 
-	if ((r <= heap_size) && (A[r] > A[largest]) && A[r] > A[largest])//Se i ha figlio dx e se figlio dx > padre i
-		largest = r; //Setto largest ad r
+	if ((r <= heap_size) && (A[r] > A[largest]) && A[r] > A[largest])//If i has right son adn right son is > father i
+		largest = r; //setting r as largest
 
 
-	if (largest != i) { //Se largest � cambiato
-		scambia(&A[i], &A[largest]); //Scambio i valori del padre con il figlio
-		heapify(A, largest, heap_size); //Rieseguo la funzione in modo ricorsivo, fino a quanto largest == i
+	if (largest != i) { //if largest changed
+		scambia(&A[i], &A[largest]); //swap father with son's value'
+		heapify(A, largest, heap_size); //executing the function again until largest = i
 	}
 	return;
 }
 
-void build_heap(int *A, int heap_size) //Costruisce una code heap da albero
+void build_heap(int *A, int heap_size) //Builds a heap from a tree
 {
 	int i;
-	for (i = heap_size / 2; i >= 1; i--) //Setto i a met� dell'albero, e continuo fino ad i = 1
+	for (i = heap_size / 2; i >= 1; i--) //Setting i at half tree, keep on until i = 1
 		heapify(A, i, heap_size);
 	return;
 }
 
-void heapsort(int *A, int dim) //Ordina la heap in ordine crescente
+void heapsort(int *A, int dim) //sorting the heap from the lowest to the biggest
 {
 	int i, heap_size;
 
