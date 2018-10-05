@@ -12,7 +12,7 @@ Basic data types supported:
 - double
 - string
 
-Any different data type can be easily implemented adding your personal code to the library.
+Any different data type can be easily implemented adding your personal code.
 
 A fork library based upon my "elements" can be found at (italian):
 https://github.com/LeoMirots/Lists
