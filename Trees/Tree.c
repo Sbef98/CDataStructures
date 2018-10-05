@@ -1,28 +1,35 @@
 #include "UnivEl.h"
 #include "Alberi.h"
-element root(tree t)
+element root(tree t) //returns the root element
 {
-  if(t == NULL)
-    abort();
-  return t->value;
+  if(t == NULL){
+	element tmp; 	//Returns a null element. May give errors if unchecked
+	tmp.value = NULL;
+	tmp.type = NULL;
+	return tmp;
+  }
+  return t->value; 
 }
 
-boolean isEmpty(tree t)
+boolean isEmpty(tree t) //tells if the tree is empty
 {
  return t == NULL ? True : False;
 }
 
-tree left(tree t)
+tree left(tree t) //returns the left tree
 {
   return t == NULL ? NULL : t->left;
 }
 
-tree right(tree t)
+tree right(tree t) // returns the right tree
 {
   return t== NULL ? NULL : t->right;
 }
 
-tree consTree(element e, tree l, tree r)
+tree consTree(element e, tree l, tree r) 
+/* Builds a new tree out of the given element and trees.
+ * In someway, the function creates a new root which uses
+ * the given trees as sons */
 {
   tree t = malloc(sizeof(node));
   t->value = copy_element(e);
@@ -32,7 +39,7 @@ tree consTree(element e, tree l, tree r)
 }
 
 
-void preOrder(tree t)
+void preOrder(tree t) //Prints the tree in pre order
 {
   if(t!=NULL){
 		printf("\t");
@@ -44,7 +51,7 @@ void preOrder(tree t)
 		printf("\t-"); //Niente figlio
 }
 
-void inOrder(tree t) //In ordine
+void inOrder(tree t) //Prints the tree in order
 {
 	if (isEmpty(t)==False){
 		inOrder(left(t));
@@ -56,7 +63,7 @@ void inOrder(tree t) //In ordine
 		printf("\t-"); //Niente figlio
 }
 
-void postOrder(tree t) //Posticipato
+void postOrder(tree t) //Prints the tree in post order
 {
 	if (isEmpty(t)==False){
 		postOrder(left(t));
@@ -68,24 +75,24 @@ void postOrder(tree t) //Posticipato
 		printf("\t-"); //Niente figlio
 }
 
-boolean elementIsEqual(element e1, element e2)
+boolean elementIsEqual(element e1, element e2) //checks if 2 elements are equal
 {
   return cmp(&e1, &e2) == 0 ? True : False;
 }
 
-boolean memberTree(element e, tree t)
+boolean memberTree(element e, tree t) //checks if a give element is part of the tree
 {
   return t == NULL ? False : (cmp(&e, &(t->value)) == 0 ? True : (memberTree(e, t->left) || memberTree(e, t->right)));
 }
 
-boolean memberOrdTree(element e, tree t)
+boolean memberOrdTree(element e, tree t) //checks if a given element is part of the BST
 {
-  int confronto;
+  int conf;
   while(t != NULL){
-    confronto = cmp(&e, &(t->value));
-    if(confronto == 0)
+    conf = cmp(&e, &(t->value));
+    if(conf == 0)
       return True;
-    else if(confronto < 0)
+    else if(conf < 0)
       t = t->left;
     else
       t = t->right;
@@ -93,7 +100,7 @@ boolean memberOrdTree(element e, tree t)
   return False;
 }
 
-tree copyTree(tree t)
+tree copyTree(tree t) //Cretes a new tree which is the exact copy of the given one
 {
   if(isEmpty(t)==True)
     return NULL;
@@ -101,6 +108,12 @@ tree copyTree(tree t)
 }
 
 void ContaDominanti(tree t, int* n)
+/* 
+ * This functions is probably useless.
+ * It tells you how many nodes are at the same time:
+ * - Not leaves
+ * - Bigger than the additions of their sons' value
+ */
 {
 	int c;
 	if (left(t) == NULL && right(t) == NULL)
@@ -119,7 +132,7 @@ void ContaDominanti(tree t, int* n)
 		(*n)++;
 }
 
-int numerofoglie(tree t)
+int numerofoglie(tree t) //counts how many leaves are available in the given tree
 {
 	if (isEmpty(t) == True)
 		return 0;
@@ -137,7 +150,8 @@ int numerofoglie(tree t)
 		return  numerofoglie(left(t));
 }
 
-boolean isBigger(element a, element b)
+boolean isBigger(element a, element b) //Tells which element is bigger
+//Does not support different elements
 {
 	if(cmp(&a,&b)>0)
 		return True;
@@ -145,7 +159,8 @@ boolean isBigger(element a, element b)
 		return False;
 }
 
-boolean isEqual(element a, element b)
+boolean isEqual(element a, element b) // Tells IF THE GIVEN ELEMENTS ARE EQUAL
+//does not support different elements
 {
 	if(cmp(&a,&b) == 0)
 		return True;
@@ -153,7 +168,8 @@ boolean isEqual(element a, element b)
 		return False;
 }
 
-boolean isLess(element a, element b)
+boolean isLess(element a, element b) //Tells if a is smaller than b
+//does not support different elements
 {
 	if(cmp(&a,&b) < 0)
 		return True;
@@ -162,7 +178,7 @@ boolean isLess(element a, element b)
 }
 
 
-tree insordTree(element e, tree t) //Aggiunge l'elemento, rispettando l'ordine dell'albero bin di ric
+tree insordTree(element e, tree t) // Adds an element to the tree without breaking the BST order
 {
 	if (isEmpty(t) == True)
 		return consTree(e, emptyTree(), emptyTree());
@@ -173,7 +189,8 @@ tree insordTree(element e, tree t) //Aggiunge l'elemento, rispettando l'ordine d
 			return consTree(root(t), left(t), insordTree(e, right(t)));
 }
 
-void BstMaxToMin(tree t)
+void BstMaxToMin(tree t) //Prints the tree from the biggest element to the smallest
+//uses the bst properties
 {
 	if (t != NULL){
 		BstMaxToMin(right(t));
@@ -183,7 +200,8 @@ void BstMaxToMin(tree t)
 	}
 }
 
-void BstMinToMax(tree t)
+void BstMinToMax(tree t) //prints the whole tree from the smallest element to the biggest
+//uses the bst properties
 {
 	if (t != NULL){
 		BstMinToMax(left(t));
@@ -193,7 +211,8 @@ void BstMinToMax(tree t)
 	}
 }
 
-tree deleteBST(element e, tree t) {
+tree deleteBST(element e, tree t) { //Deletes an element equal to the one given
+//uses bst properties
 	tree l = t, next;
 	tree pl = NULL, pr = NULL;
 	while (isEmpty(t)==False && isEqual(root(t),e) == False) {
@@ -269,7 +288,7 @@ tree deleteBST(element e, tree t) {
 	return l;
 }
 
-int height(tree t) {
+int height(tree t) { // Finds the tree height
 	if (isEmpty(t))
 		return 0;
 	else {
@@ -282,15 +301,24 @@ int height(tree t) {
 	}
 }
 
-tree CONSTREE(void* toel, int tipo, tree l, tree r)
+tree CONSTREE(void* toel, int tipo, tree l, tree r) //Same as cons, but without a general element
 {
-    element el = build_element(toel, tipo);
-    tree tmp = consTree(el, l, r);
+    element el = build_element(toel, tipo); //Creates a general element
+    tree tmp = consTree(el, l, r); //uses the actual constree function
+    element_del(&el); //deletes the tmp element
+    return tmp; //returns the new tree
+}
+
+boolean MEMBERTREE(void* toel, int tipo, tree t) //same as member tree, but without a general element
+{
+	boolean tmp;
+	element el = build_element(toel, tipo);
+    tmp = memberTree(el, t);
     element_del(&el);
     return tmp;
 }
 
-tree INSORDTREE(void* toel, int tipo, tree t)
+tree INSORDTREE(void* toel, int tipo, tree t) //like insord but withouta general element
 {
     element el = build_element(toel, tipo);
     t = insordTree(el,t);
@@ -298,7 +326,7 @@ tree INSORDTREE(void* toel, int tipo, tree t)
     return t;
 }
 
-tree DELETEBST(void*toel, int tipo, tree t)
+tree DELETEBST(void*toel, int tipo, tree t) //same as delete bst but without a general element
 {
     element el = build_element(toel, tipo);
     t = deleteBST(el,t);
@@ -306,12 +334,12 @@ tree DELETEBST(void*toel, int tipo, tree t)
     return t;
 }
 
-void free_node(tree n)
+void free_node(tree n) //deletes a tree node forever
 {
     element_del(&(n->value));
     free(n);
 }
-void delete_tree(tree t)
+void delete_tree(tree t) //deletes the whole tree forever
 {
     if(isEmpty(t)==True)
         return;

@@ -1,22 +1,15 @@
 #ifndef ALBERI_H
 #define ALBERI_H
 #include "UnivEl.h"
-/* Ci devi infilare:
-  -showEl(element e);
-  -cmpTreeEl(node* a, node* b);
-  -typedef dell'elemento
-*/
 
-/*
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 //typedef int element;
-typedef struct treeElement {
-  element value;
-  struct treeElement *left, *right;
+typedef struct treeElement {  //this is a node
+  element value; //the node's value'
+  struct treeElement *left, *right; //the node's sons'
 } node;
 typedef node* tree;
 
@@ -26,7 +19,7 @@ typedef unsigned char boolean;
 #define Error -1
 
 //extern tree emptyTree(void);
-#define emptyTree() NULL
+#define emptyTree() NULL //creates an empty tree, which is just a null pointer
 extern element root(tree t);
 extern tree left(tree t);
 extern tree right(tree t);
@@ -48,9 +41,6 @@ extern void ContaDominanti(tree t, int* n);
 extern boolean isLess(element a, element b);
 extern boolean isEqual(element a, element b);
 extern boolean isBigger(element a, element b);
-//non miei
-//extern tree ConstInputAnticipato(void);
-//extern tree ConstVettAnticipato(int*, int*);
 extern void BstMaxToMin(tree t);
 extern void BstMinToMax(tree t);
 extern tree deleteBST(element e, tree t);

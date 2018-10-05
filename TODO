@@ -1,0 +1,13 @@
+1) Bug fixing:
+	-trees
+		->debug copytree
+	-reviewed code
+	-try the libraries all together
+2) Commenting code
+	-trees (ok)
+	-elements
+	-lists
+	-heaps
+3) Add documentation
+4) Check the bool and boolean shit
+5)Ad absolute bigger, smaller and equal
