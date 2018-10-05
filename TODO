@@ -11,3 +11,6 @@
 3) Add documentation
 4) Check the bool and boolean shit
 5)Ad absolute bigger, smaller and equal
+SOME DAY (never):
+1b)	 Secondary element.h and element.c, which uses the struct somehow like a class, linking type specific functions to the
+	 element struct via function pointers. Way Higher memory usage, faster coding and execution!
