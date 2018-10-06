@@ -36,16 +36,18 @@ extern tree INSORDTREE(void* toel, int tipo, tree t);
 extern boolean memberTree(element e, tree t);
 extern boolean memberOrdTree(element e, tree t);
 extern tree copyTree(tree t);
-extern void ContaDominanti(tree t, int* n);
+extern void DominantsCounter(tree t, int* n);
 
 extern boolean isLess(element a, element b);
 extern boolean isEqual(element a, element b);
 extern boolean isBigger(element a, element b);
 extern void BstMaxToMin(tree t);
 extern void BstMinToMax(tree t);
+extern int height(tree t);
+extern int LeavesNumber(tree t);
+
+extern void delete_tree(tree t);
+extern void free_node(tree n);
 extern tree deleteBST(element e, tree t);
 extern tree DELETEBST(void*toel, int tipo, tree t);
-extern int height(tree t);
-extern int numerofoglie(tree t);
-extern void delete_tree(tree t);
 #endif /*ALBERI_H*/

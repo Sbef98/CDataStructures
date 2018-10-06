@@ -47,8 +47,6 @@ void preOrder(tree t) //Prints the tree in pre order
 		preOrder(left(t));
 		preOrder(right(t));
 	}
-	else
-		printf("\t-"); //Niente figlio
 }
 
 void inOrder(tree t) //Prints the tree in order
@@ -59,8 +57,6 @@ void inOrder(tree t) //Prints the tree in order
 		printEl(root(t));
 		inOrder(right(t));
 	}
-	else
-		printf("\t-"); //Niente figlio
 }
 
 void postOrder(tree t) //Prints the tree in post order
@@ -71,8 +67,6 @@ void postOrder(tree t) //Prints the tree in post order
 		printf("\t");
 		printEl(root(t));
 	}
-	else
-		printf("\t-"); //Niente figlio
 }
 
 boolean elementIsEqual(element e1, element e2) //checks if 2 elements are equal
@@ -91,7 +85,7 @@ boolean memberOrdTree(element e, tree t) //checks if a given element is part of 
   while(t != NULL){
     conf = cmp(&e, &(t->value));
     if(conf == 0)
-      return True;
+      return True; //element found
     else if(conf < 0)
       t = t->left;
     else
@@ -107,7 +101,7 @@ tree copyTree(tree t) //Cretes a new tree which is the exact copy of the given o
   return consTree(root(t), copyTree(left(t)), copyTree(right(t)));
 }
 
-void ContaDominanti(tree t, int* n)
+void DominantsCounter(tree t, int* n)
 /* 
  * This functions is probably useless.
  * It tells you how many nodes are at the same time:
@@ -115,24 +109,24 @@ void ContaDominanti(tree t, int* n)
  * - Bigger than the additions of their sons' value
  */
 {
-	int c;
+	int c = element_value(&(t->value)); //gets the absolute value of the node's element
 	if (left(t) == NULL && right(t) == NULL)
 		return;
 	if(left(t) != NULL){
-		ContaDominanti(left(t), n);
-		c = element_value(&(t->value)) - element_value(&(t->value));
+		DominantsCounter(left(t), n);
+		c = c - element_value(&(left(t)->value)); //checking if the absolute value of the left son is bigger than the node's one'
 	}
 	if (right(t) != NULL) {
-		ContaDominanti(right(t), n);
-		if (!(c < 0)) {
-			c = c - element_value(&t->value);
+		DominantsCounter(right(t), n);
+		if (!(c < 0)) { //if the left son was bigger, no need to do this
+			c = c - element_value(&right(t)->value); //same as before
 		}
 	}
-	if(c > 0)
+	if(c > 0) //if the parent was bigger than the addition of the sons'absolute values we found a dominant node
 		(*n)++;
 }
 
-int numerofoglie(tree t) //counts how many leaves are available in the given tree
+int LeavesNumber(tree t) //counts how many leaves are available in the given tree
 {
 	if (isEmpty(t) == True)
 		return 0;
@@ -143,11 +137,11 @@ int numerofoglie(tree t) //counts how many leaves are available in the given tre
 	if (empty_left == True && empty_right == True)
 		return 1;
 	else if (empty_left == False && empty_right == False)
-		return  numerofoglie(left(t)) + numerofoglie(right(t));
+		return  LeavesNumber(left(t)) + LeavesNumber(right(t));
 	else if (empty_left == True && empty_right == False)
-		return  numerofoglie(right(t));
+		return  LeavesNumber(right(t));
 	else if (empty_left == False && empty_right == True)
-		return  numerofoglie(left(t));
+		return  LeavesNumber(left(t));
 }
 
 boolean isBigger(element a, element b) //Tells which element is bigger
@@ -230,7 +224,7 @@ tree deleteBST(element e, tree t) { //Deletes an element equal to the one given
 	//printf("\ntrovato %d", root(t));
 
 	if (isEmpty(t)==False) {
-		// Il nodo da eliminare � una foglia
+		// The node is a leaf
 		if (isEmpty(left(t))==True && isEmpty(right(t))==True) {
                         
 			if (t == l){
@@ -241,7 +235,7 @@ tree deleteBST(element e, tree t) { //Deletes an element equal to the one given
 			next = emptyTree();
 		}
 		else {
-			// Il nodo da eliminare ha un solo figlio
+			// it only has 1 son
 			if (isEmpty(left(t))==True) {
                             free_node(t);
 				if (t == l){
@@ -261,7 +255,7 @@ tree deleteBST(element e, tree t) { //Deletes an element equal to the one given
 					next = left(t);
 				}
 				else {
-					// Il nodo da eliminare ha due figli
+					// 2 sons
 					pr = t;
 					pl = emptyTree();
 					next = right(t);
@@ -295,7 +289,11 @@ int height(tree t) { // Finds the tree height
 		int h1 = height(left(t));
 		int h2 = height(right(t));
 		if (h1 > h2)
-			return 1 + h1;
+		/*
+		 * find the highest tree height, afterwars ads
+		 * 1 for the root
+		 * */
+			return 1 + h1; 
 		else
 			return 1 + h2;
 	}
