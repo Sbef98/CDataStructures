@@ -91,7 +91,7 @@ void printEl(element e)
 int cmp(element* a, element* b)
 {
     if(a->type != b->type){
-        fprintf(stderr, "Tentativo di confronto tra elementi di tipo differente! Errore!\n");
+        fprintf(stderr, "The type of the two elements passed to the function differes! Errore!\n");
         abort();
     }
     int out;
