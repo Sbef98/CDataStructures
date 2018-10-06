@@ -67,7 +67,7 @@ void heapsort(int *A, int dim) //sorting the heap from the lowest to the biggest
 	}
 	return;
 }
-
+/*
 int riempivettore(int *A)
 {
 	int i;
@@ -76,7 +76,7 @@ int riempivettore(int *A)
 
 	return MAX - 1;
 }
-
+*
 void stampavettore(int *A)
 {
 	int i;
@@ -87,7 +87,7 @@ void stampavettore(int *A)
 
 	return;
 }
-
+*/
 int Parent(int i) 
 {
 	return i / 2;

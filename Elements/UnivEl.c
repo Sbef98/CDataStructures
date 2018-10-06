@@ -1,13 +1,11 @@
 #include "UnivEl.h"
+/*
+For any of these function, in case you need to add a new elements, 
+just define the needed functions at the end of this file. 
+Afterwars, add the needed case to each switch!!!
+*/
 element build_element(void* el, int tipo)
 {
-	/*
-	 * BISOGNA ricordarsi poi ch c'è il problema dell'allocamento di meemoria.
-	 * Infatti,  ogni volta che si crea un nuovo elemento si alloca memoria per il valore dell'elemento,
-	 * e quella memoria va pur sempre e comunque svuotata!
-	 * Nel copiare un elemento nell'altro non si fa altro che copiare la vecchia memoria allocandone di nuova. Quindi,
-	 * CI SI DEVE SEMPRE RICORDARE DI USARE ELEMENT DEL!
-	 */
 	element out;
 	out.type = tipo;
 	switch(tipo){
@@ -135,9 +133,6 @@ int cmp(element* a, element* b)
 
 int element_value(element* e)
 {
-	/*è un po' come cmp, ma con un elemento fissato
-	 * come campione. Ad esempio nelle stringhe, utilizzo il confronto
-	 * Tra la stringa data e una string vuota. Mi pare sensato, o non lo è affatto??*/
 	int out;
     switch(e->type){
 		case ushort_element:
@@ -174,6 +169,8 @@ int element_value(element* e)
 	}
 	return out;
 }
+
+////////// FUNCTIONS FOR ELEMENTS MANAGEMENT ///////////
 
 string* string_copy(void* str_in)
 {

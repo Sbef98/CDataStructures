@@ -9,7 +9,7 @@
 #define uchar unsigned char
 #define uint unsigned int
 
-enum types{
+enum types{ 	//add your types to this list
   char_element,
   uchar_element,
   ushort_element,
@@ -19,32 +19,43 @@ enum types{
   float_element,
   double_element,
   string_element,
+  persona_element;
 };
 
 typedef struct{
-	void* value;
-	int type;
+	void* value;	//where the actual variable will be stored
+	int type; 		//Type of element, like char_element 
 } element;
 
 typedef struct{
 	char* s;
 	size_t len;
 } string;
-typedef struct {
+
+typedef struct { //an example of addable new data type
     char Nome [20];
     char CF [17];
     char Referto [100];
     int CodiceAccesso;
 } Persona;
-extern element build_element(void* el, int tipo);
-extern void element_del(element *e);
-extern int cmp(element* a, element* b);
+
+extern element build_element(void* el, int tipo); 
+/*Do you wat to convert your variable to a element?
+ * are u lazy to do it by yourself?
+ * Pick this function!
+ * for example: 
+ * int c = 3;
+ * element new_el = build_element(&c, int_element);
+ */
+extern void element_del(element *e); //deallocates and element
+extern int cmp(element* a, element* b); //it's like 'a-b'
 extern void printEl(element e);
 #define copy_element(/*element*/ el)	build_element((el).value, (el).type)
-extern int element_value(element* e);
+extern int element_value(element* e); //the absolute value of an element. This way, it's possible to confront diferent data types
 
 				/*
-		ELEMENTI SPECIALI
+		Special Elements 
+	(link here your functions)
 				*/
 extern void str_del(string str);
 extern string string_append(char* add_str, string str);
