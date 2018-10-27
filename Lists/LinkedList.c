@@ -1,4 +1,4 @@
-#include "UnivLL.h"
+#include "LinkedList.h"
 
 
 list cons(element e, list l)
@@ -200,12 +200,24 @@ size_t ricerca(element e, list l)
 	return error;
 }
 
+list copy_list(list l)
+{
+	list l2 = emptylist();
+	while (l != NULL) {
+		l2 = append_element(head(l), l2);
+		l = tail(l);
+	}
+	return l2;
+}
+
 list difference(list l1, list l2)
 {
+	if (l2 == NULL)
+		return copy_list(l1);
+	if (l1 == NULL)
+		return copy_list(l2);
 	list root = l2;
 	list l3 = NULL;
-	if (l2 == NULL)
-		return l3;
 	while (l1 != NULL) {
 		if (ricerca(l1->value, l2) == -1 && ricerca(l1->value, l3) == -1)
 			l3 = append_element(l1->value, l3);

@@ -1,7 +1,7 @@
 #include "UnivEl.h"
 /*
-For any of these function, in case you need to add a new elements, 
-just define the needed functions at the end of this file. 
+For any of these function, in case you need to add a new elements,
+just define the needed functions at the end of this file.
 Afterwars, add the needed case to each switch!!!
 */
 element build_element(void* el, int tipo)
@@ -29,7 +29,7 @@ element build_element(void* el, int tipo)
 			break;
 		case int_element:
 		case uint_element:
-			out.value = malloc(sizeof(int));
+			out.value =  malloc(sizeof(int));
 			memcpy(out.value, el, sizeof(int));
 			break;
 		case string_element:
@@ -46,6 +46,7 @@ void element_del(element *e)
 	switch(e->type){
 		case string_element:
 			str_del(*((string*)e->value));
+			break;
 		default:
 			free(e->value);
 			break;
@@ -91,7 +92,7 @@ void printEl(element e)
 int cmp(element* a, element* b)
 {
     if(a->type != b->type){
-        fprintf(stderr, "The type of the two elements passed to the function differes! Errore!\n");
+        fprintf(stderr, "Tentativo di confronto tra elementi di tipo differente! Errore!\n");
         abort();
     }
     int out;
@@ -181,7 +182,7 @@ string* string_copy(void* str_in)
 string build_string(char* str_in, size_t len)
 {
 	char* str_out = calloc(len + 1, sizeof(char));
-	str_out = (str_out, str_in);
+	str_out = strcpy(str_out, str_in);
 	string s = { str_out, len };
 	return s;
 }

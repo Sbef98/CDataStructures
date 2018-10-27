@@ -61,6 +61,7 @@ extern list intersect(list l1, list l2); //RETURNS A LIST MADE OF elements avail
 extern void list_del(list l); //Deletes a list
 extern size_t ricerca(element e, list l); //"research", finds an element inside a list telling its position
 extern list difference(list l1, list l2); //Returns a list of elements that are not in common
+extern list copy_list(list l);
 extern element maxelement(list l); //returns the biggest element
 extern void item_del(item* it); //Deletes a list item
 extern void bubble_sort(list a); //why not merge sort or quick sort? i like bubbles. who doesn't.'
