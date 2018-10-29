@@ -72,9 +72,4 @@ extern string build_string(char* str_in, size_t len);
 extern string* string_copy(void* str_in);
 
 extern Persona build_persona(char* nome, char* cf, char* referto, int codiceAccesso);
-
-extern void tl_delete(truth_line tt);
-extern truth_line build_tl(bool* in, /*bool out, */size_t n_input);
-extern truth_line* tl_copy(void* tt_int);
-extern void print_tl(void* tt_int);
 #endif /*EL_H*/
