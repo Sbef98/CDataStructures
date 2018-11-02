@@ -1,4 +1,6 @@
 # CDataStructures
+What's special about this repository? The ultra messy and probably not-a-good-idea-to-use Elements directory of course!
+
 The basic C data structures:
 - Lists
 - Trees
