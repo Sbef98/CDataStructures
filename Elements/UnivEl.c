@@ -116,10 +116,16 @@ int cmp(element* a, element* b)
             out = (int)(*((short*)(a->value)) - *((short*) (b->value)));
 			break;
 		case float_element:
-            out = (int)(*((float*)(a->value)) - *((float*)(b->value)));
+						if( get_float(*a) - get_float(*b) < 0)
+							out = -1;
+						else
+							out = get_float(*a) -get_float(*b) == 0 ? 0 : 1;
 			break;
 		case double_element:
-            out = (int)(*((double*)(a->value)) - *((double*) (b->value)));
+            if(get_float(*a) - get_float(*b) < 0)
+							out = -1;
+						else
+							out = get_float(*a) - get_float(*b) == 0 ? 0 : 1;
 			break;
 		case string_element:
 			out = (int)strcmp(((string*)a->value)->s, ((string*)b->value)->s);
@@ -133,7 +139,7 @@ int cmp(element* a, element* b)
 }
 
 int element_value(element* e)
-{
+{   //fa cagare sta funzione e non ho idea del perchè io l'abbia creata
 	int out;
     switch(e->type){
 		case ushort_element:
