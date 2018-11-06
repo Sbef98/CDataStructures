@@ -53,15 +53,15 @@ extern int cmp(element* a, element* b); //it's like 'a-b'
 extern void printEl(element e);
 #define copy_element(/*element*/ el)	build_element((el).value, (el).type)
 extern int element_value(element* e); //the absolute value of an element. This way, it's possible to confront diferent data types
-#define get_int(e) *((int*)(e.value))
-#define get_float(e) *((float*)(e.value))
-#define get_double(e) *((double*)(e.value))
-#define get_uint(e) *((uint*)(e.value))
-#define get_short(e) *((short*)(e.value))
-#define get_ushort(e) *((ushort*)(e.value))
-#define get_char(e) *((char*)(e.value))
-#define get_uchar(e) *((uchar*)(e.value))
-#define get_string(e) *((string*)(e.value))
+#define get_int(e) *((int*)((e).value))
+#define get_float(e) *((float*)((e).value))
+#define get_double(e) *((double*)((e).value))
+#define get_uint(e) *((uint*)((e).value))
+#define get_short(e) *((short*)((e).value))
+#define get_ushort(e) *((ushort*)((e).value))
+#define get_char(e) *((char*)((e).value))
+#define get_uchar(e) *((uchar*)((e).value))
+#define get_string(e) *((string*)((e).value))
 				/*
 		Special Elements
 	(link here your functions)
@@ -73,8 +73,4 @@ extern string* string_copy(void* str_in);
 
 extern Persona build_persona(char* nome, char* cf, char* referto, int codiceAccesso);
 
-extern void tl_delete(truth_line tt);
-extern truth_line build_tl(bool* in, /*bool out, */size_t n_input);
-extern truth_line* tl_copy(void* tt_int);
-extern void print_tl(void* tt_int);
 #endif /*EL_H*/

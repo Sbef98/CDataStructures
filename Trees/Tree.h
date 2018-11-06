@@ -38,9 +38,9 @@ extern boolean memberOrdTree(element e, tree t);
 extern tree copyTree(tree t);
 extern void DominantsCounter(tree t, int* n);
 
-extern boolean isLess(element a, element b);
-extern boolean isEqual(element a, element b);
-extern boolean isBigger(element a, element b);
+extern boolean isLessT(element a, element b);
+extern boolean isEqualT(element a, element b);
+extern boolean isBiggerT(element a, element b);
 extern void BstMaxToMin(tree t);
 extern void BstMinToMax(tree t);
 extern int height(tree t);

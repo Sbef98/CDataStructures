@@ -3,12 +3,12 @@
 
 //Heap_size � il numero di elementi escluso lo 0 iniziale (0, 2, 5, 3, 6, 9): 5
 
-int left(int i)
+int leftHeap(int i)
 {
 	return 2 * i;
 }
 
-int right(int i)
+int rightHeap(int i)
 {
 	return 2 * i + 1;
 }
@@ -26,15 +26,15 @@ void heapify(int *A, int i, int heap_size) //Node move down
 {
 
 	int l, r, largest;
-	l = left(i); //I's left son index'
-	r = right(i);//I's right son index'
+	l = leftHeap(i); //I's leftHeap son index'
+	r = rightHeap(i);//I's rightHeap son index'
 
 	largest = i; //Setting position I as default value
 
-	if ((l <= heap_size) && (A[l] > A[i])) //If i has left son and the right one is > father i
+	if ((l <= heap_size) && (A[l] > A[i])) //If i has leftHeap son and the rightHeap one is > father i
 		largest = l; //Setting largest at l
 
-	if ((r <= heap_size) && (A[r] > A[largest]) && A[r] > A[largest])//If i has right son adn right son is > father i
+	if ((r <= heap_size) && (A[r] > A[largest]) && A[r] > A[largest])//If i has rightHeap son adn rightHeap son is > father i
 		largest = r; //setting r as largest
 
 

@@ -1,5 +1,5 @@
 #include "UnivEl.h"
-#include "Alberi.h"
+#include "tree.h"
 element root(tree t) //returns the root element
 {
   if(t == NULL){
@@ -144,7 +144,7 @@ int LeavesNumber(tree t) //counts how many leaves are available in the given tre
 		return  LeavesNumber(left(t));
 }
 
-boolean isBigger(element a, element b) //Tells which element is bigger
+boolean isBiggerT(element a, element b) //Tells which element is bigger
 //Does not support different elements
 {
 	if(cmp(&a,&b)>0)
@@ -153,7 +153,7 @@ boolean isBigger(element a, element b) //Tells which element is bigger
 		return False;
 }
 
-boolean isEqual(element a, element b) // Tells IF THE GIVEN ELEMENTS ARE EQUAL
+boolean isEqualT(element a, element b) // Tells IF THE GIVEN ELEMENTS ARE EQUAL
 //does not support different elements
 {
 	if(cmp(&a,&b) == 0)
@@ -162,7 +162,7 @@ boolean isEqual(element a, element b) // Tells IF THE GIVEN ELEMENTS ARE EQUAL
 		return False;
 }
 
-boolean isLess(element a, element b) //Tells if a is smaller than b
+boolean isLessT(element a, element b) //Tells if a is smaller than b
 //does not support different elements
 {
 	if(cmp(&a,&b) < 0)
@@ -177,7 +177,7 @@ tree insordTree(element e, tree t) // Adds an element to the tree without breaki
 	if (isEmpty(t) == True)
 		return consTree(e, emptyTree(), emptyTree());
 	else
-		if (isLess(e, root(t)) == True || isEqual(e, root(t)) == True)
+		if (isLessT(e, root(t)) == True || isEqualT(e, root(t)) == True)
 			return consTree(root(t), insordTree(e, left(t)), right(t));
 		else
 			return consTree(root(t), left(t), insordTree(e, right(t)));
@@ -209,8 +209,8 @@ tree deleteBST(element e, tree t) { //Deletes an element equal to the one given
 //uses bst properties
 	tree l = t, next;
 	tree pl = NULL, pr = NULL;
-	while (isEmpty(t)==False && isEqual(root(t),e) == False) {
-		if (isLess(e,root(t)) == True) {
+	while (isEmpty(t)==False && isEqualT(root(t),e) == False) {
+		if (isLessT(e,root(t)) == True) {
 			pl = t;
 			pr = emptyTree();
 			t = left(t);

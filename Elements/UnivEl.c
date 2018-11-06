@@ -116,7 +116,7 @@ int cmp(element* a, element* b)
             out = (int)(*((short*)(a->value)) - *((short*) (b->value)));
 			break;
 		case float_element:
-						if( get_float(*a) - get_float(*b) < 0)
+						if( get_float((*a)) - get_float((*b)) < 0)
 							out = -1;
 						else
 							out = get_float(*a) -get_float(*b) == 0 ? 0 : 1;

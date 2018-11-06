@@ -7,8 +7,8 @@
 
 //#include "element.h"
 
-extern int left(int); //finds the left son
-extern int right(int); //finds the right son
+extern int leftHeap(int); //finds the left son
+extern int rightHeap(int); //finds the right son
 extern void scambia(int*, int*); //"SWAP"
 extern void heapify(int*, int, int); //makes everything happy (idk)
 extern void build_heap(int*, int); //builds a heap
