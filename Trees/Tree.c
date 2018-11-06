@@ -5,7 +5,7 @@ element root(tree t) //returns the root element
   if(t == NULL){
 	element tmp; 	//Returns a null element. May give errors if unchecked
 	tmp.value = NULL;
-	tmp.type = NULL;
+	tmp.type = 9999;
 	return tmp;
   }
   return t->value; 
@@ -142,6 +142,8 @@ int LeavesNumber(tree t) //counts how many leaves are available in the given tre
 		return  LeavesNumber(right(t));
 	else if (empty_left == False && empty_right == True)
 		return  LeavesNumber(left(t));
+	else
+		return 0; //check this in case of problems
 }
 
 boolean isBiggerT(element a, element b) //Tells which element is bigger
