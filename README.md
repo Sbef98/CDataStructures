@@ -19,4 +19,4 @@ Any different data type can be easily implemented adding your personal code.
 A fork library based upon my "elements" can be found at (italian):
 https://github.com/LeoMirots/Lists
 
-The developement and maintenance of this repository was stopped the 9th of Novemeber 2018
+The developement and maintenance of this repository was stopped as of the 9th of Novemeber 2018
