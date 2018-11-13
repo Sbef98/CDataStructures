@@ -122,10 +122,10 @@ int cmp(element* a, element* b)
 							out = get_float(*a) -get_float(*b) == 0 ? 0 : 1;
 			break;
 		case double_element:
-            if(get_float(*a) - get_float(*b) < 0)
+            if(get_double(*a) - get_double(*b) < 0)
 							out = -1;
 						else
-							out = get_float(*a) - get_float(*b) == 0 ? 0 : 1;
+							out = get_double(*a) - get_double(*b) == 0 ? 0 : 1;
 			break;
 		case string_element:
 			out = (int)strcmp(((string*)a->value)->s, ((string*)b->value)->s);
