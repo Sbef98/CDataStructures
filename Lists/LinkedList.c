@@ -294,7 +294,7 @@ list CONS(void* toel, int tipo, list l)
 {
     element el = build_element(toel, tipo);
     l = cons(el, l);
-    //element_del(&el);
+    element_del(&el);
     return l;
 }
 
