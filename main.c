@@ -1,6 +1,3 @@
-#define _CRTDBG_MAP_ALLOC  
-#include <stdlib.h>  
-#include <crtdbg.h>
 #include "LinkedList.h"
 
 int main(void)
@@ -21,7 +18,7 @@ int main(void)
 	{
 		element tmp = build_element(&i, int_element);
 		vector = cons(tmp, vector);
-		element_del(&tmp);
+		element_del(tmp);
 	}
 	showlist(vector);
 	bubble_sort(vector);
@@ -47,6 +44,13 @@ int main(void)
 	if (ultimo == 9 && max == ultimo)
 		printf("\nlast and maxelement ok\n");
 	item_del(int_list);
+	list repeted = emptylist();
+	int h = 4;
+	for (size_t i = 0; i < 10; ++i)
+		repeted = APPEND_ELEMENT(&h, int_element, repeted);
+	NoRepetition(repeted);
+	if (llenght(repeted) == 1)
+		printf("\nNoRepetition ok\n");
 	//end of numeric data test
 	
 	system("PAUSE");

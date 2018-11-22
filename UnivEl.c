@@ -42,14 +42,16 @@ element build_element(void* el, int tipo)
 	return out;
 }
 
-void element_del(element *e)
+void element_del(element e)
 {
-	switch(e->type){
+	switch(e.type){
 		case string_element:
-			str_del(*((string*)e->value));
+			str_del(*((string*)e.value));
 			break;
+		case persona_element:
+		
 		default:
-			free(e->value);
+			free(e.value);
 			break;
 	}
 }
@@ -84,8 +86,9 @@ void printEl(element e)
 		case string_element:
 			printf("%s", ((string*)e.value)->s);
 			break;
+		
 		default:
-			printf("IDK WHAT THE HELL IS THIS $*!t");
+			printf("\nUnknown data type!\n");
             break;
  	}
 }
@@ -133,11 +136,35 @@ int cmp(element* a, element* b)
 			break;
 		
 		default:
-			printf("Unknow type inserted!");
+			printf("Unknown type inserted!");
             abort();
             break;
 	}
 	return out;
+}
+
+bool isBigger(element a, element b)
+{
+	if (cmp(&a, &b) > 0)
+		return true;
+	else
+		return false;
+}
+
+bool isEqual(element a, element b)
+{
+	if (cmp(&a, &b) == 0)
+		return true;
+	else
+		return false;
+}
+
+bool isLess(element a, element b)
+{
+	if (cmp(&a, &b) < 0)
+		return true;
+	else
+		return false;
 }
 
 int element_value(element* e)
