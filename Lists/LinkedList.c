@@ -63,12 +63,14 @@ list behead(list l)
 
 void pop(list l, size_t element_n)
 {
-	//non serve lo 0, poichè è un semplice tail + cancellazione!!!
+	if(element_n == 0){
+		fprintf(stderr, "Cannot delete element 0. Use behead instead of pop");
+	}
 	if(element_n > length(l)){
 		fprintf(stderr, "Tryng to delete an element outside the list!");
 		abort();
 	}
-  for(size_t i = 0; i < element_n; i++)
+  for(size_t i = 0; i < element_n - 1; i++)
     l = l->next;
   list cancellable = l->next;
   l->next = cancellable->next;
@@ -77,8 +79,10 @@ void pop(list l, size_t element_n)
 
 void showlist(list l)
 {
-    if(l == NULL)
+    if(l == NULL){
         printf("Empty list!\n");
+	return;
+    }
     printf("[ ");
     while(l != NULL){
         printEl((l->value));
@@ -186,11 +190,11 @@ void list_del(list l)
 	}
 }
 
-size_t ricerca(element e, list l)
+int ricerca(element e, list l)
 {
 	if (l == NULL)
 		return error;
-	size_t  i = 0;
+	int  i = 0;
 	do {
 		if (isEqual(e, l->value))
 			return i;
@@ -229,7 +233,9 @@ list difference(list l1, list l2)
 element maxelement(list l)
 {
 	element x;
-    BOOL flag = False;
+	if(l == NULL)
+	    fprintf(stderr,"Looking for max element in an empty list");
+	BOOL flag = False;
 	while (l != NULL) {
 		if (flag == False){
 			x = copy_element(head(l));
@@ -247,6 +253,27 @@ void item_del(item* it)
 {
 	element_del(&(it->value));
 	free(it);
+}
+
+list deleteRepetition(list l)
+//This function is not mine. i fixed it giving a brief look, but nothing more
+{
+	if(empty(l) == True)
+		return emptylist();
+	list root = l;
+	while(empty(tail(l)) == false){
+		int duplicate = ricerca(head(l), tail(l));
+		if(duplicate == Error)
+			l = tail(l);
+			//Controllare se si stia rimuovendo quello giusto
+		else{
+			if(duplicate == 0)
+				l = behead(l);
+			else
+				pop(l, duplicate);
+		}
+	}
+	return root;
 }
 
 void bubble_sort(list l)
@@ -292,18 +319,19 @@ void swap(list a, list b) // va miglioratore
 
 list CONS(void* toel, int tipo, list l)
 {
-    element el = build_element(toel, tipo);
-    l = cons(el, l);
-    element_del(&el);
-    return l;
+        list t = malloc(sizeof(item));
+	t->value = build_element(toel, tipo);;
+	t->next = l;
+    	return t;
 }
 
 list APPEND_ELEMENT(void* toel, int tipo, list l)
 {
-    element el = build_element(toel, tipo);
-    l = append_element(el, l);
-    element_del(&el);
-    return l;
+    	if (l == NULL)
+		return CONS(toel, tipo, l);
+	list tmp = CONS(toel, tipo,  NULL);
+	return append(l, tmp);
+    	return l;
 }
 
 list INSORD(void* toel, int tipo, list l)

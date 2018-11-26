@@ -68,4 +68,5 @@ extern element maxelement(list l); //returns the biggest element
 extern void item_del(item* it); //Deletes a list item
 extern void bubble_sort(list a); //why not merge sort or quick sort? i like bubbles. who doesn't.'
 extern void swap(list a, list b);
+extern list deleteRepetition(list l);
 #endif /*UNIVLL_H*/
