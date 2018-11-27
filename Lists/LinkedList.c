@@ -263,7 +263,7 @@ list deleteRepetition(list l)
 	list root = l;
 	while(empty(tail(l)) == false){
 		int duplicate = ricerca(head(l), tail(l));
-		if(duplicate == Error)
+		if(duplicate == error)
 			l = tail(l);
 			//Controllare se si stia rimuovendo quello giusto
 		else{
